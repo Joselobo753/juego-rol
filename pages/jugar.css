@@ -1,0 +1,36 @@
+#characterCard {
+    border-radius: 10px; /* Esquinas redondeadas */
+    background-color: #f8f9fa; /* Color de fondo claro */
+    color: #343a40; /* Color del texto oscuro */
+}
+
+#characterCard .card-body {
+    padding: 2rem; /* Más espacio dentro de la tarjeta */
+}
+
+#characterCard .card-title {
+    font-size: 1.5rem; /* Tamaño del título más grande */
+    font-weight: bold;
+}
+
+#characterCard .card-text {
+    margin-bottom: 1rem; /* Espacio entre párrafos */
+}
+
+#characterCard .btn-primary {
+    background-color: #007bff; /* Color personalizado del botón */
+    border: none;
+}
+
+#characterCard .btn-primary:hover {
+    background-color: #0056b3; /* Color del botón al pasar el ratón */
+}
+
+#characterCard .btn-success {
+    background-color: #28a745; /* Color personalizado del botón */
+    border: none;
+}
+
+#characterCard .btn-success:hover {
+    background-color: #1e7e34; /* Color del botón al pasar el ratón */
+}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Personaje</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .carousel-item img {
+        width: 100%;
+        height: 60vh; /* Ajusta esta altura según tus necesidades */
+        object-fit: cover;
+      }
+      .carousel-item:hover .carousel-caption {
+        display: block !important;
+      }
+      .carousel-caption {
+        display: none;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      li {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="../img/png-transparent-dungeons-dragons-fantasy-elf-character-elf-elf-human-head.png"
+            alt="Logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          Hoja de rol
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="crear_pj.html"
+                >Crear PJ</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./jugar.html">Jugar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Master</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body class="d-flex flex-column min-vh-100">
+    <main
+      class="container-fluid d-flex flex-column justify-content-center align-items-center full-height"
+    >
+      <h1 class="text-center">Crear Personaje</h1>
+
+      <!-- Carrusel de Selección de Personaje -->
+      <div
+        id="pjCarousel"
+        class="carousel slide w-100 mb-5"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-value="guerrero">
+            <img
+              src="https://www.dadocritico.es/files/page/img/4/big-Drow%20armadura.jpg"
+              class="d-block w-100"
+              alt="Guerrero"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Elfo: Alta agilidad y mana, menor vida.</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Vida: 3</li>
+                <li class="list-group-item">Fuerza: 4</li>
+                <li class="list-group-item">Agilidad: 7</li>
+                <li class="list-group-item">Mana: 6</li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item" data-value="mago">
+            <img src="../img/DwarfPHB.webp" class="d-block w-100" alt="Mago" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Enano: Alta vida y fuerza, menor agilidad.</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Vida: 7</li>
+                <li class="list-group-item">Fuerza: 7</li>
+                <li class="list-group-item">Agilidad: 3</li>
+                <li class="list-group-item">Mana: 3</li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item" data-value="ladron">
+            <img src="../img/images.jpeg" class="d-block w-100" alt="Ladrón" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Humano: Equilibrados en todas las estadísticas.</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Vida: 6</li>
+                <li class="list-group-item">Fuerza: 5</li>
+                <li class="list-group-item">Agilidad: 5</li>
+                <li class="list-group-item">Mana: 4</li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item" data-value="ladron">
+            <img
+              src="../img/ricardo-sanchez-alvarez-orco-1.jpg"
+              class="d-block w-100"
+              alt="Ladrón"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Orco: Alta vida y fuerza, menor mana.</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Vida: 8</li>
+                <li class="list-group-item">Fuerza: 7</li>
+                <li class="list-group-item">Agilidad: 3</li>
+                <li class="list-group-item">Mana: 2</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Agrega más items según sea necesario -->
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#pjCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#pjCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+
+      <form class="w-50">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre del Personaje</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            name="nombre"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="raza" class="form-label">Raza</label>
+          <select class="form-select" id="raza" name="raza" required>
+            <option value="">Selecciona una raza</option>
+            <option value="humano">Humano</option>
+            <option value="elfo">Elfo</option>
+            <option value="enano">Enano</option>
+            <option value="orco">Orco</option>
+          </select>
+          <button type="submit" id="selectRaceBtn" class="btn btn-primary">
+            Elegir raza
+          </button>
+        </div>
+      </form>
+      <form id="characterForm" style="display: none" action="">
+        <div id="remainingPoints" class="mb-3 text-center font-weight-bold">
+          Puntos restantes: 10
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="mb-3">
+              <label for="vida" class="form-label">Vida</label>
+              <input
+                type="number"
+                class="form-control"
+                id="vida"
+                name="vida"
+                min="0"
+                max="10"
+                required
+              />
+              <small class="form-text text-muted" id="vidaInitial"
+                >Inicial: 0</small
+              >
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-3">
+              <label for="fuerza" class="form-label">Fuerza</label>
+              <input
+                type="number"
+                class="form-control"
+                id="fuerza"
+                name="fuerza"
+                min="0"
+                max="10"
+                required
+              />
+              <small class="form-text text-muted" id="fuerzaInitial"
+                >Inicial: 0</small
+              >
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-3">
+              <label for="agilidad" class="form-label">Agilidad</label>
+              <input
+                type="number"
+                class="form-control"
+                id="agilidad"
+                name="agilidad"
+                min="0"
+                max="10"
+                required
+              />
+              <small class="form-text text-muted" id="agilidadInitial"
+                >Inicial: 0</small
+              >
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-3">
+              <label for="mana" class="form-label">Mana</label>
+              <input
+                type="number"
+                class="form-control"
+                id="mana"
+                name="mana"
+                min="0"
+                max="10"
+                required
+              />
+              <small class="form-text text-muted" id="manaInitial"
+                >Inicial: 0</small
+              >
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Personaje</button>
+      </form>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const razaStats = {
+        humano: { vida: 6, fuerza: 5, agilidad: 5, mana: 4 },
+        elfo: { vida: 3, fuerza: 4, agilidad: 7, mana: 6 },
+        enano: { vida: 7, fuerza: 7, agilidad: 3, mana: 3 },
+        orco: { Vida: 8, Fuerza: 7, Agilidad: 3, Mana: 2 },
+      };
+
+      const totalPoints = 10; // Cambia este valor según tus necesidades
+
+      document
+        .getElementById("selectRaceBtn")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          const selectedRace = document.getElementById("raza").value;
+          if (selectedRace) {
+            const stats = razaStats[selectedRace];
+            document.getElementById(
+              "vidaInitial"
+            ).textContent = `Inicial: ${stats.vida}`;
+            document.getElementById(
+              "fuerzaInitial"
+            ).textContent = `Inicial: ${stats.fuerza}`;
+            document.getElementById(
+              "agilidadInitial"
+            ).textContent = `Inicial: ${stats.agilidad}`;
+            document.getElementById(
+              "manaInitial"
+            ).textContent = `Inicial: ${stats.mana}`;
+
+            // Inicializar inputs en 0
+            document.getElementById("vida").value = 0;
+            document.getElementById("fuerza").value = 0;
+            document.getElementById("agilidad").value = 0;
+            document.getElementById("mana").value = 0;
+
+            document.getElementById("characterForm").style.display = "block";
+
+            updateRemainingPoints();
+          }
+        });
+
+      const statInputs = document.querySelectorAll(
+        "#vida, #fuerza, #agilidad, #mana"
+      );
+      statInputs.forEach((input) => {
+        input.addEventListener("input", updateRemainingPoints);
+        input.addEventListener("change", updateRemainingPoints); // Asegurar la actualización al cambiar valor
+      });
+
+      function updateRemainingPoints() {
+        const usedPoints = Array.from(statInputs).reduce(
+          (acc, input) => acc + parseInt(input.value || 0, 10),
+          0
+        );
+        const remainingPoints = totalPoints - usedPoints;
+        document.getElementById(
+          "remainingPoints"
+        ).textContent = `Puntos restantes: ${remainingPoints}`;
+
+        // Ajustar el maximo permitido en cada input
+        statInputs.forEach((input) => {
+          const currentValue = parseInt(input.value || 0, 10);
+          input.max = currentValue + remainingPoints;
+        });
+      }
+
+      // Inicializar inputs con valor máximo permitido en 0 al cargar el formulario
+      document.addEventListener("DOMContentLoaded", () => {
+        statInputs.forEach((input) => {
+          input.value = 0;
+          input.max = totalPoints;
+        });
+        updateRemainingPoints();
+      });
+
+      document
+        .getElementById("characterForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const remainingPoints = parseInt(
+            document
+              .getElementById("remainingPoints")
+              .textContent.split(": ")[1],
+            10
+          );
+
+          if (isNaN(remainingPoints) || remainingPoints < 0) {
+            alert("Puntos restantes no pueden ser negativos o NaN");
+            return;
+          }
+
+          const selectedRace = document.getElementById("raza").value;
+          const stats = razaStats[selectedRace];
+          const nombre = document.getElementById("nombre").value;
+          const vida =
+            parseInt(document.getElementById("vida").value || 0, 10) +
+            stats.vida;
+          const fuerza =
+            parseInt(document.getElementById("fuerza").value || 0, 10) +
+            stats.fuerza;
+          const agilidad =
+            parseInt(document.getElementById("agilidad").value || 0, 10) +
+            stats.agilidad;
+          const mana =
+            parseInt(document.getElementById("mana").value || 0, 10) +
+            stats.mana;
+
+          const personaje = {
+            nombre: nombre,
+            raza: selectedRace,
+            vida: vida,
+            fuerza: fuerza,
+            agilidad: agilidad,
+            mana: mana,
+            experiencia: 0, // Nueva propiedad
+            nivel: 1, // Nueva propiedad
+            inventario: [], // Nueva propiedad
+            habilidades: [], // Nueva propiedad
+          };
+          console.log(personaje);
+          localStorage.setItem("personaje", JSON.stringify(personaje));
+          alert("Personaje creado y guardado en Local Storage");
+        });
+    </script>
+  </body>
+</html>

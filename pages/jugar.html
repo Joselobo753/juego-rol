@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugar</title>
+    <link rel="stylesheet" href="jugar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="mx-3">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../img/png-transparent-dungeons-dragons-fantasy-elf-character-elf-elf-human-head.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Hoja de rol
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./crearPj.html">Crear PJ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="jugar.html">Jugar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Master</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="characterCard" class="card shadow-lg border-primary" style="display: none;">
+        <div class="card-header bg-primary text-white">
+            <h4>Detalles del Personaje</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" id="characterName"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" id="characterRace"></h6>
+            <p class="card-text">
+                <strong>Vida:</strong> <span id="characterVida"></span><br>
+                <strong>Fuerza:</strong> <span id="characterFuerza"></span><br>
+                <strong>Agilidad:</strong> <span id="characterAgilidad"></span><br>
+                <strong>Mana:</strong> <span id="characterMana"></span><br>
+                <strong>Experiencia:</strong> <span id="characterExperiencia"></span><br>
+                <strong>Nivel:</strong> <span id="characterNivel"></span>
+            </p>
+            <button id="addExperience" class="btn btn-primary">Agregar Experiencia</button>
+            <div id="levelUp" class="mt-3" style="display: none;">
+                <h5>Subir de Nivel</h5>
+                <p>Tienes <span id="levelUpPoints"></span> puntos para asignar</p>
+                <form id="levelUpForm">
+                    <div class="mb-3">
+                        <label for="addVida" class="form-label">Vida</label>
+                        <input type="number" class="form-control" id="addVida" name="addVida" min="0" value="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addFuerza" class="form-label">Fuerza</label>
+                        <input type="number" class="form-control" id="addFuerza" name="addFuerza" min="0" value="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addAgilidad" class="form-label">Agilidad</label>
+                        <input type="number" class="form-control" id="addAgilidad" name="addAgilidad" min="0" value="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addMana" class="form-label">Mana</label>
+                        <input type="number" class="form-control" id="addMana" name="addMana" min="0" value="0">
+                    </div>
+                    <button type="submit" class="btn btn-success">Asignar Puntos</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion container my-3 " id="accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button bg-success  " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <p class="fw-blond text-white m-0">Recuperacion de vida y mana</p>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+              <div class="m-3">
+                <label for="heal">Recuperar Vida:</label>
+                <input type="number" id="heal" min="0">
+                <button id="healButton" class="btn btn-success my-3">Recuperar Vida</button>
+            </div>
+            <!-- Recuperar Mana -->
+            <div class="m-3">
+                <label for="restoreMana">Recuperar Mana:</label>
+                <input type="number" id="restoreMana" min="0">
+                <button id="restoreManaButton" class="btn btn-primary my-3">Recuperar Mana</button>
+            </div>
+
+          </div>
+        </div>
+
+</div>
+        <div class="container mt-4">
+            <!-- Recibir Daño -->
+            <div>
+                <label for="damage">Daño recibido:</label>
+                <input type="number" id="damage" min="0">
+                <button id="takeDamage" class="btn btn-danger my-2">Recibir Daño</button>
+            </div>
+            <!-- Recuperar Vida -->
+           
+        </div>
+
+        <div id="inventorySection" class="mt-5">
+            <h5>Inventario</h5>
+            <ul id="inventoryList" class="list-group">
+                <!-- Items serán añadidos aquí -->
+            </ul>
+            <form id="inventoryForm" class="mt-3">
+                <div class="mb-3">
+                    <label for="item" class="form-label">Agregar Item</label>
+                    <input type="text" class="form-control" id="item" name="item">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Item</button>
+            </form>
+        </div>
+
+        <div id="abilitiesSection" class="mt-5">
+            <h5>Habilidades</h5>
+            <ul id="abilitiesList" class="list-group">
+                <!-- Habilidades serán añadidas aquí -->
+            </ul>
+            <div class="accordion py-4 container" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button bg-primary fw-blond text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-2" aria-expanded="true" aria-controls="panelsStayOpen-2">
+                      Agregar habilidad
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-2" class="accordion-collapse collapse show">
+                    <form id="abilitiesForm" class="mt-3">
+                <div class="mb-3">
+                    <label for="ability" class="form-label">Agregar Habilidad</label>
+                    <input type="text" class="form-control" id="ability" name="ability">
+                </div>
+                <div class="mb-3">
+                    <label for="manaCost" class="form-label">Costo de Mana</label>
+                    <input type="number" class="form-control" id="manaCost" name="manaCost" min="0" value="0">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Habilidad</button>
+            </form>
+                  </div>
+                </div>
+            
+        </div>
+        </div>
+    </main>
+        <footer class="bg-dark text-center p-3">
+                <h1 class="text-white">Eviten ser tramposos....</h1>
+                <button id="deleteCharacter" class="btn btn-danger mt-3">Borrar Personaje</button>
+        </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let personaje = JSON.parse(localStorage.getItem('personaje'));
+            if (personaje) {
+                document.getElementById('characterName').textContent = "Nombre: " +personaje.nombre;
+                document.getElementById('characterRace').textContent = "Raza: " + personaje.raza;
+                document.getElementById('characterVida').textContent = personaje.vida;
+                document.getElementById('characterFuerza').textContent = personaje.fuerza;
+                document.getElementById('characterAgilidad').textContent = personaje.agilidad;
+                document.getElementById('characterMana').textContent = personaje.mana;
+                document.getElementById('characterExperiencia').textContent = personaje.experiencia;
+                document.getElementById('characterNivel').textContent = personaje.nivel;
+        
+                // Mantener un registro del máximo de vida y mana
+                let maxVida = personaje.vida;
+                let maxMana = personaje.mana;
+        
+                updateCardBorder(personaje.vida);
+        
+                document.getElementById('characterCard').style.display = 'block';
+        
+                // Mostrar inventario
+                const inventoryList = document.getElementById('inventoryList');
+                personaje.inventario.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+                    listItem.textContent = item;
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'btn btn-danger btn-sm float-end';
+                    removeButton.textContent = 'Eliminar';
+                    removeButton.addEventListener('click', () => {
+                        personaje.inventario = personaje.inventario.filter(i => i !== item);
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        inventoryList.removeChild(listItem);
+                    });
+                    listItem.appendChild(removeButton);
+                    inventoryList.appendChild(listItem);
+                });
+        
+                // Mostrar habilidades
+                const abilitiesList = document.getElementById('abilitiesList');
+                personaje.habilidades.forEach(ability => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+                    listItem.textContent = `${ability.nombre} (Costo de Mana: ${ability.mana})`;
+                    const useButton = document.createElement('button');
+                    useButton.className = 'btn btn-success btn-sm float-end';
+                    useButton.textContent = 'Usar';
+                    useButton.addEventListener('click', () => {
+                        if (personaje.mana >= ability.mana) {
+                            personaje.mana -= ability.mana;
+                            localStorage.setItem('personaje', JSON.stringify(personaje));
+                            document.getElementById('characterMana').textContent = personaje.mana;
+                            alert(`Has usado la habilidad ${ability.nombre}`);
+                        } else {
+                            alert('No tienes suficiente mana');
+                        }
+                    });
+                    listItem.appendChild(useButton);
+                    abilitiesList.appendChild(listItem);
+                });
+        
+                // Agregar experiencia y subir de nivel
+                document.getElementById('addExperience').addEventListener('click', () => {
+                    personaje.experiencia += 1; // Ejemplo de incremento de experiencia
+                    if (personaje.experiencia >= 10) { // Ejemplo de condición para subir de nivel
+                        personaje.nivel += 1;
+                        personaje.experiencia = 0;
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        document.getElementById('characterNivel').textContent = personaje.nivel;
+                        document.getElementById('characterExperiencia').textContent = personaje.experiencia;
+                        document.getElementById('levelUp').style.display = 'block';
+                        document.getElementById('levelUpPoints').textContent = 10; // Ejemplo de puntos para asignar
+                        document.getElementById('addExperience').style.display = 'none'; // Esconder botón de agregar experiencia
+                    } else {
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        document.getElementById('characterExperiencia').textContent = personaje.experiencia;
+                    }
+                });
+        
+                // Formulario para subir de nivel
+                document.getElementById('levelUpForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const totalPoints = parseInt(document.getElementById('levelUpPoints').textContent);
+                    const addVida = parseInt(document.getElementById('addVida').value) || 0;
+                    const addFuerza = parseInt(document.getElementById('addFuerza').value) || 0;
+                    const addAgilidad = parseInt(document.getElementById('addAgilidad').value) || 0;
+                    const addMana = parseInt(document.getElementById('addMana').value) || 0;
+                    const totalAssigned = addVida + addFuerza + addAgilidad + addMana;
+        
+                    if (totalAssigned > totalPoints) {
+                        alert('No puedes asignar más puntos de los disponibles.');
+                    } else {
+                        personaje.vida += addVida;
+                        personaje.fuerza += addFuerza;
+                        personaje.agilidad += addAgilidad;
+                        personaje.mana += addMana;
+                        maxVida = personaje.vida;
+                        maxMana = personaje.mana;
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        document.getElementById('characterVida').textContent = personaje.vida;
+                        document.getElementById('characterFuerza').textContent = personaje.fuerza;
+                        document.getElementById('characterAgilidad').textContent = personaje.agilidad;
+                        document.getElementById('characterMana').textContent = personaje.mana;
+                        document.getElementById('levelUp').style.display = 'none';
+                        document.getElementById('addExperience').style.display = 'block'; // Mostrar botón de agregar experiencia
+                    }
+                });
+        
+                // Formulario para agregar item al inventario
+                document.getElementById('inventoryForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const item = document.getElementById('item').value;
+                    if (item) {
+                        personaje.inventario.push(item);
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        listItem.textContent = item;
+                        const removeButton = document.createElement('button');
+                        removeButton.className = 'btn btn-danger btn-sm float-end';
+                        removeButton.textContent = 'Eliminar';
+                        removeButton.addEventListener('click', () => {
+                            personaje.inventario = personaje.inventario.filter(i => i !== item);
+                            localStorage.setItem('personaje', JSON.stringify(personaje));
+                            inventoryList.removeChild(listItem);
+                        });
+                        listItem.appendChild(removeButton);
+                        inventoryList.appendChild(listItem);
+                        document.getElementById('item').value = '';
+                    }
+                });
+        
+                // Formulario para agregar habilidades
+                document.getElementById('abilitiesForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const ability = document.getElementById('ability').value;
+                    const manaCost = parseInt(document.getElementById('manaCost').value) || 0;
+                    if (ability && manaCost >= 0) {
+                        const newAbility = { nombre: ability, mana: manaCost };
+                        personaje.habilidades.push(newAbility);
+                        localStorage.setItem('personaje', JSON.stringify(personaje));
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        listItem.textContent = `${ability} (Costo de Mana: ${manaCost})`;
+                        const useButton = document.createElement('button');
+                        useButton.className = 'btn btn-success btn-sm float-end';
+                        useButton.textContent = 'Usar';
+                        useButton.addEventListener('click', () => {
+                            if (personaje.mana >= manaCost) {
+                                personaje.mana -= manaCost;
+                                localStorage.setItem('personaje', JSON.stringify(personaje));
+                                document.getElementById('characterMana').textContent = personaje.mana;
+                                alert(`Has usado la habilidad ${ability}`);
+                            } else {
+                                alert('No tienes suficiente mana');
+                            }
+                        });
+                        listItem.appendChild(useButton);
+                        abilitiesList.appendChild(listItem);
+                        document.getElementById('ability').value = '';
+                        document.getElementById('manaCost').value = '';
+                    }
+                });
+        
+                // Función para recibir daño
+                document.getElementById('takeDamage').addEventListener('click', () => {
+                    const damage = parseInt(document.getElementById('damage').value) || 0;
+                    personaje.vida -= damage;
+                    if (personaje.vida < 0) personaje.vida = 0;
+                    localStorage.setItem('personaje', JSON.stringify(personaje));
+                    document.getElementById('characterVida').textContent = personaje.vida;
+                    updateCardBorder(personaje.vida);
+                });
+        
+                // Función para recuperar vida
+                document.getElementById('healButton').addEventListener('click', () => {
+                    const heal = parseInt(document.getElementById('heal').value) || 0;
+                    personaje.vida += heal;
+                    if (personaje.vida > maxVida) personaje.vida = maxVida;
+                    localStorage.setItem('personaje', JSON.stringify(personaje));
+                    document.getElementById('characterVida').textContent = personaje.vida;
+                    updateCardBorder(personaje.vida);
+                });
+        
+                // Función para recuperar mana
+                document.getElementById('restoreManaButton').addEventListener('click', () => {
+                    const restoreMana = parseInt(document.getElementById('restoreMana').value) || 0;
+                    personaje.mana += restoreMana;
+                    if (personaje.mana > maxMana) personaje.mana = maxMana;
+                    localStorage.setItem('personaje', JSON.stringify(personaje));
+                    document.getElementById('characterMana').textContent = personaje.mana;
+                });
+        
+                // Función para actualizar el borde de la tarjeta del personaje
+                function updateCardBorder(vida, maxVida) {
+    const card = document.getElementById('characterCard');
+    const porcentajeVida = (vida / maxVida) * 100;
+
+    // Primero eliminar todas las clases de borde posibles para evitar conflictos
+    card.classList.remove('border-danger', 'border-warning');
+
+    if (porcentajeVida <= 20) {
+        card.classList.add('border-danger');
+    } else if (porcentajeVida <= 50) {
+        card.classList.add('border-warning');
+    } // No es necesario el else aquí, ya que el estado "normal" no necesita clases adicionales
+}
+                document.getElementById('deleteCharacter').addEventListener('click', () => {
+            localStorage.removeItem('personaje');
+            alert('Personaje borrado');
+            window.location.reload(); // Recargar la página para actualizar la vista
+        });
+        updateCardBorder(personaje.vida,maxVida);
+            }
+            
+        });
+        </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
