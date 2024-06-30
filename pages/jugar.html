@@ -215,9 +215,21 @@
                             personaje.mana -= ability.mana;
                             localStorage.setItem('personaje', JSON.stringify(personaje));
                             document.getElementById('characterMana').textContent = personaje.mana;
-                            alert(`Has usado la habilidad ${ability.nombre}`);
+                           
+                            Swal.fire({
+icon: "success",
+  imageHeight: 1500,
+  title: `Has usado la habilidad ${ability.nombre}`,
+  
+});
                         } else {
-                            alert('No tienes suficiente mana');
+                           
+                            Swal.fire({
+  icon:"error",
+  
+  title: "No tienes suficiente mana!",
+  
+});
                         }
                     });
                     listItem.appendChild(useButton);
@@ -253,7 +265,13 @@
                     const totalAssigned = addVida + addFuerza + addAgilidad + addMana;
         
                     if (totalAssigned > totalPoints) {
-                        alert('No puedes asignar más puntos de los disponibles.');
+                        
+                        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "No puedes agregar mas de 10!",
+  
+});
                     } else {
                         personaje.vida += addVida;
                         personaje.fuerza += addFuerza;
@@ -315,9 +333,19 @@
                                 personaje.mana -= manaCost;
                                 localStorage.setItem('personaje', JSON.stringify(personaje));
                                 document.getElementById('characterMana').textContent = personaje.mana;
-                                alert(`Has usado la habilidad ${ability}`);
+                          
+                                Swal.fire({
+  title: "Enhorabuena",
+  text: `Has usado la habilidad ${ability}`,
+  icon: "success"
+});
                             } else {
-                                alert('No tienes suficiente mana');
+                                Swal.fire({
+  icon: "error",
+  title: "jajaja...",
+  text: "No tienes mana Pezon!",
+  
+});
                             }
                         });
                         listItem.appendChild(useButton);
@@ -348,14 +376,14 @@
                 });
         
                 // Función para recuperar mana
+               
                 document.getElementById('restoreManaButton').addEventListener('click', () => {
-                    const restoreMana = parseInt(document.getElementById('restoreMana').value) || 0;
-                    personaje.mana += restoreMana;
-                    if (personaje.mana > maxMana) personaje.mana = maxMana;
-                    localStorage.setItem('personaje', JSON.stringify(personaje));
-                    document.getElementById('characterMana').textContent = personaje.mana;
-                });
-        
+            const restoreMana = parseInt(document.getElementById('restoreMana').value) || 0;
+            personaje.mana += restoreMana;
+            if (personaje.mana > maxMana) personaje.mana = maxMana;
+            localStorage.setItem('personaje', JSON.stringify(personaje));
+            document.getElementById('characterMana').textContent = personaje.mana;
+        });
                 // Función para actualizar el borde de la tarjeta del personaje
                 function updateCardBorder(vida, maxVida) {
     const card = document.getElementById('characterCard');
@@ -370,17 +398,26 @@
         card.classList.add('border-warning');
     } // No es necesario el else aquí, ya que el estado "normal" no necesita clases adicionales
 }
-                document.getElementById('deleteCharacter').addEventListener('click', () => {
+                document.getElementById('deleteCharacter').addEventListener('click', (e) => {
+          let confirmacion = confirm("borraste tu pj ")
+           if(confirmacion){
             localStorage.removeItem('personaje');
-            alert('Personaje borrado');
-            window.location.reload(); // Recargar la página para actualizar la vista
+            window.location.reload();
+           }
+      
         });
+
+
+
         updateCardBorder(personaje.vida,maxVida);
             }
             
         });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+

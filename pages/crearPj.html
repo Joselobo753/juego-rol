@@ -276,6 +276,7 @@
       <h1>Procura ser coherente no te sirve pegar una sola ves cada 2 años</h1>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -370,7 +371,11 @@
           );
 
           if (isNaN(remainingPoints) || remainingPoints < 0) {
-            alert("Puntos restantes no pueden ser negativos o NaN");
+            Swal.fire({
+  title: "Estas bien?",
+  text: "Definitivamente NO!! revisa",
+  icon: "question"
+});
             return;
           }
 
@@ -404,7 +409,11 @@
           };
           console.log(personaje);
           localStorage.setItem("personaje", JSON.stringify(personaje));
-          alert("Personaje creado y guardado en Local Storage");
+          Swal.fire({
+  title: "Genial",
+  text: "Despues de 9 meses de gestacion y parto forzoso pariste un",
+  icon: "success"
+});
         });
     </script>
   </body>
