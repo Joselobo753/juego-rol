@@ -190,12 +190,13 @@
             <option value="enano">Enano</option>
             <option value="orco">Orco</option>
           </select>
-          <button type="submit" id="selectRaceBtn" class="btn btn-primary">
+          <div class="py-2">
+          <button type="submit" id="selectRaceBtn" class="btn btn-primary ">
             Elegir raza
           </button>
-        </div>
+       </div> </div>
       </form>
-      <form id="characterForm" style="display: none" action="">
+      <form id="characterForm" style="display: none" action="" class="my-5">
         <div id="remainingPoints" class="mb-3 text-center font-weight-bold">
           Puntos restantes: 10
         </div>
@@ -405,13 +406,15 @@
             experiencia: 0, // Nueva propiedad
             nivel: 1, // Nueva propiedad
             inventario: [], // Nueva propiedad
-            habilidades: [], // Nueva propiedad
+            habilidades: [],
+            titulos: [],
+            clases:[] // Nueva propiedad
           };
           console.log(personaje);
           localStorage.setItem("personaje", JSON.stringify(personaje));
           Swal.fire({
   title: "Genial",
-  text: "Despues de 9 meses de gestacion y parto forzoso pariste un",
+  text: `Despues de 9 meses de gestacion y parto forzoso pariste un ${selectedRace} `,
   icon: "success"
 });
         });

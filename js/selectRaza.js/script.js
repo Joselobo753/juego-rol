@@ -119,13 +119,13 @@ document.getElementById('enemyForm').addEventListener('submit', function (event)
     let difficultyMultiplier;
     switch (difficultyValue) {
         case 'easy':
-            difficultyMultiplier = 1;
+            difficultyMultiplier = 1.5;
             break;
         case 'medium':
-            difficultyMultiplier = 2;
+            difficultyMultiplier = 3;
             break;
         case 'hard':
-            difficultyMultiplier = 3;
+            difficultyMultiplier = 5;
             break;
     }
 
@@ -165,36 +165,42 @@ function distributePoints(points) {
 }
 
 function createEnemyCard(enemy, index) {
-    const col = document.createElement('div');
-    col.className = 'col-md-4 enemy-card';
-    col.id = `enemy-${index}`;
+    // Genera un número aleatorio entre 1 y 100 para la inteligencia
+const inteligencia = Math.floor(Math.random() * 100) + 1;
 
-    const card = document.createElement('div');
-    card.className = 'card';
+// Crea la tarjeta del enemigo
+const col = document.createElement('div');
+col.className = 'col-md-4 enemy-card';
+col.id = `enemy-${index}`;
 
-    const cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
+const card = document.createElement('div');
+card.className = 'card';
 
-    const title = document.createElement('h5');
-    title.className = 'card-title';
-    title.innerText = `${enemy.type} (Nivel: ${enemy.level})`;
+const cardBody = document.createElement('div');
+cardBody.className = 'card-body';
 
-    const description = document.createElement('p');
-    description.className = 'card-text';
-    description.innerText = enemy.description;
+const title = document.createElement('h5');
+title.className = 'card-title';
+title.innerText = `${enemy.type} (Nivel: ${enemy.level})`;
 
-    const difficulty = document.createElement('p');
-    difficulty.className = 'card-text';
-    difficulty.innerText = `Dificultad: ${enemy.difficulty}`;
+const description = document.createElement('p');
+description.className = 'card-text';
+description.innerText = enemy.description;
 
-    const stats = document.createElement('p');
-    stats.className = 'card-text';
-    stats.innerHTML = `
-        Vida: <span id="life-${index}">${enemy.stats.life}</span><br>
-        Fuerza: ${enemy.stats.strength}<br>
-        Agilidad: ${enemy.stats.agility}<br>
-        Mana: ${enemy.stats.mana}
-    `;
+const difficulty = document.createElement('p');
+difficulty.className = 'card-text';
+difficulty.innerText = `Dificultad: ${enemy.difficulty}`;
+
+const stats = document.createElement('p');
+stats.className = 'card-text';
+stats.innerHTML = `
+Inteligencia: ${inteligencia}<br><br>
+    Vida: <span id="life-${index}">${enemy.stats.life}</span><br>
+    Fuerza: ${enemy.stats.strength}<br>
+    Agilidad: ${enemy.stats.agility}<br>
+    Mana: ${enemy.stats.mana}<br>
+    
+`;
 
     const lifeInput = document.createElement('input');
     lifeInput.type = 'number';

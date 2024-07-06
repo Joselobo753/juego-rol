@@ -65,6 +65,14 @@
             <button type="submit" class="btn btn-primary">Generar Enemigos</button>
         </form>
         <div id="enemyContainer" class="row"></div>
+        <div>
+            <h1>estadistica</h1> 
+            <p>vida</p><p>La vida tambien empezara a contar como defensa, Tu vida total / 10 es iguala ala <b>mitigacion de daño (redondeada para abajo)</b><br> ejemplo: 63 de vida, mitigas el 6 de daño <br> Al tener menos del 50% de vida se entra en estado herido y progresa de la siguinte forma  <br> 50% de vida -1 <br> 30% de vida -2 <br> 10% de vida -3 <br> 1 de vida anulacion de jugadas</p>
+    <p>Fuerza </p><p> "La Fuerza es la estadistica mas equilibrada dentro de todos, el calculo de daño de fuerza es igual alas  fuerza/3 por un dado de 10 <br>1=0 <br>2,3=0.5<br>4,5,6,7=1 <br> 8,9=1.5  <br>10=2  <br> mas el daño del arma  <br> <b> ejemplo: fuerza 30 mas una tirada de 9 mas una rama de 6 =10*1.5+6 = 21 de daño</b>",
+</p>
+           <p>Agilidad </p><p><br> La agilidad es el campo mas nerfeado del parche, ahora la estadistica cuenta de la siguinete manera:<br> La estadistica total, se cuenta para el accionar de los turnos, si tienes mas agilidad del grupo atacas primero, <b>y si y solo si </b> doblas en velocidad a tu siguente player tienes chances de pegar 2 o 3 veces, reduciendo el daño (no efecto de impacto) del golpe. <br> La agilidad contra los enemigos dependen de la diferencia de ambos <br> <b>Agilidad para acrobacias se cuenta como agilidad Total/20 mas un dado de 10 </b> <br> ejemplo: correr entre los arboles agilidad 20, seria +1 al resultado de un dado de 10 (3) te trompezas por boludo",
+</p>        <p>Mana</p> <p>El mana para tu hablidad regalada no cuenta como crecimiento de la misma, solo servira de para habilidades aprendidas, dependiendo de tu conocimiento y contextualizacion de la magia sera efectivo a no.<br>Recuerda no siempre es mejor una ataque fuerte sino uno de utilidad <br><br> <b> El daño de tu habilidad o efectividad sera puesta a medida en un dado 10 + tu mana total en divido en 3 + el daño de magia </b> <br> Mas bonificadores</p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
