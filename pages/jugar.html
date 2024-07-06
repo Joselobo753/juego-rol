@@ -298,35 +298,41 @@ function experiencia(){
             listItem.appendChild(removeButton);
             inventoryList.appendChild(listItem);
         });
-
-        // Mostrar habilidades
-        const abilitiesList = document.getElementById('abilitiesList');
-        personaje.habilidades.forEach(ability => {
-            const listItem = document.createElement('li');
-            listItem.className = 'list-group-item';
-            listItem.textContent = `${ability.nombre} (Costo de Mana: ${ability.mana})`;
-            const useButton = document.createElement('button');
-            useButton.className = 'btn btn-success btn-sm float-end';
-            useButton.textContent = 'Usar';
-            useButton.addEventListener('click', () => {
-                if (personaje.mana >= ability.mana) {
-                    personaje.mana -= ability.mana;
-                    localStorage.setItem('personaje', JSON.stringify(personaje));
-                    document.getElementById('characterManaActual').textContent = personaje.mana;
-                    Swal.fire({
-                        icon: "success",
-                        title: `Has usado la habilidad ${ability.nombre}`,
+ // Mostrar habilidades
+ const abilitiesList = document.getElementById('abilitiesList');
+                personaje.habilidades.forEach(ability => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+                    listItem.textContent = `${ability.nombre} (Costo de Mana: ${ability.mana})`;
+                    const useButton = document.createElement('button');
+                    useButton.className = 'btn btn-success btn-sm float-end';
+                    useButton.textContent = 'Usar';
+                    useButton.addEventListener('click', () => {
+                        if (personaje.mana >= ability.mana) {
+                            personaje.mana -= ability.mana;
+                            localStorage.setItem('personaje', JSON.stringify(personaje));
+                            document.getElementById('characterManaActual').textContent = personaje.mana;
+                           
+                            Swal.fire({
+icon: "success",
+  imageHeight: 1500,
+  title: `Has usado la habilidad ${ability.nombre}`,
+  
+});
+                        } else {
+                           
+                            Swal.fire({
+  icon:"error",
+  
+  title: "No tienes suficiente mana!",
+  
+});
+                        }
                     });
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "No tienes suficiente mana!",
-                    });
-                }
-            });
-            listItem.appendChild(useButton);
-            abilitiesList.appendChild(listItem);
-        });
+                    listItem.appendChild(useButton);
+                    abilitiesList.appendChild(listItem);
+                });
+        
 
         // Agregar experiencia y subir de nivel
         document.getElementById('addExperience').addEventListener('click', () => {
@@ -429,42 +435,46 @@ function experiencia(){
 
         // Formulario para agregar habilidades
         document.getElementById('abilitiesForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const ability = document.getElementById('ability').value;
-            const manaCost = parseInt(document.getElementById('manaCost').value) || 0;
-            if (ability && manaCost) {
-                personaje.habilidades.push({ nombre: ability, mana: manaCost });
-                localStorage.setItem('personaje', JSON.stringify(personaje));
-                const listItem = document.createElement('li');
-                listItem.className = 'list-group-item';
-                listItem.textContent = `${ability} (Costo de Mana: ${manaCost})`;
-                const useButton = document.createElement('button');
-                useButton.className = 'btn btn-success btn-sm float-end';
-                useButton.textContent = 'Usar';
-                useButton.addEventListener('click', () => {
-                    if (personaje.mana >= manaCost) {
-                        personaje.mana -= manaCost;
+                    e.preventDefault();
+                    const ability = document.getElementById('ability').value;
+                    const manaCost = parseInt(document.getElementById('manaCost').value) || 0;
+                    if (ability && manaCost >= 0) {
+                        const newAbility = { nombre: ability, mana: manaCost };
+                        personaje.habilidades.push(newAbility);
                         localStorage.setItem('personaje', JSON.stringify(personaje));
-                        document.getElementById('characterManaActual').textContent = personaje.mana;
-                        Swal.fire({
-                            title: "Enhorabuena",
-                            text: `Has usado la habilidad ${ability}`,
-                            icon: "success"
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        listItem.textContent = `${ability} (Costo de Mana: ${manaCost})`;
+                        const useButton = document.createElement('button');
+                        useButton.className = 'btn btn-success btn-sm float-end';
+                        useButton.textContent = 'Usar';
+                        useButton.addEventListener('click', () => {
+                            if (personaje.mana >= manaCost) {
+                                personaje.mana -= manaCost;
+                                localStorage.setItem('personaje', JSON.stringify(personaje));
+                                document.getElementById('characterManaMaxima').textContent = personaje.mana;
+                          
+                                Swal.fire({
+  title: "Enhorabuena",
+  text: `Has usado la habilidad ${ability}`,
+  icon: "success"
+});
+                            } else {
+                                Swal.fire({
+  icon: "error",
+  title: "jajaja...",
+  text: "No tienes mana Pezon!",
+  
+});
+                            }
                         });
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "jajaja...",
-                            text: "No tienes mana Pezon!",
-                        });
+                        listItem.appendChild(useButton);
+                        abilitiesList.appendChild(listItem);
+                        document.getElementById('ability').value = '';
+                        document.getElementById('manaCost').value = '';
                     }
                 });
-                listItem.appendChild(useButton);
-                abilitiesList.appendChild(listItem);
-                document.getElementById('ability').value = '';
-                document.getElementById('manaCost').value = '';
-            }
-        });
+        
 
         // Función para recibir daño
         document.getElementById('takeDamage').addEventListener('click', () => {
